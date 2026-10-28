@@ -122,6 +122,7 @@ gradle-app.setting
 
 # Ignore vscode config
 .vscode/
+bin/
 
 # Dependency directories
 node_modules/
