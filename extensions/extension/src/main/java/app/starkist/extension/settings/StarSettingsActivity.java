@@ -82,7 +82,7 @@ public final class StarSettingsActivity extends Activity {
         int padding = dp(16);
         root.setPadding(padding, padding, padding, padding);
 
-        root.addView(sectionHeader("Article text"));
+        root.addView(sectionHeader("Font and text size"));
 
         previewText = new TextView(this);
         previewText.setText(PREVIEW_TEXT);
@@ -163,8 +163,15 @@ public final class StarSettingsActivity extends Activity {
         });
         root.addView(resetButton);
 
+        // Loaded fonts and text size stay in memory until the app restarts.
+        Button restartButton = new Button(this);
+        restartButton.setText("Restart app to apply");
+        restartButton.setOnClickListener(v -> restartApp());
+        root.addView(restartButton);
+
         TextView note = new TextView(this);
-        note.setText("Changes apply the next time you open an article.");
+        note.setText("Changes apply to the whole app after it restarts. "
+                + "100% is the app's normal text size.");
         note.setAlpha(0.7f);
         note.setPadding(0, dp(16), 0, 0);
         root.addView(note);
@@ -318,6 +325,17 @@ public final class StarSettingsActivity extends Activity {
     }
 
     // endregion
+
+    /** Relaunches the app in a fresh process so every screen picks up the new settings. */
+    private void restartApp() {
+        Intent launch = getPackageManager().getLaunchIntentForPackage(getPackageName());
+        if (launch == null || launch.getComponent() == null) {
+            toast("Please close and reopen the app");
+            return;
+        }
+        startActivity(Intent.makeRestartActivityTask(launch.getComponent()));
+        Runtime.getRuntime().exit(0);
+    }
 
     private int dp(int value) {
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value,

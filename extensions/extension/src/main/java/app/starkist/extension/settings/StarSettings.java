@@ -2,6 +2,8 @@ package app.starkist.extension.settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
+import android.util.Log;
 
 import java.io.File;
 
@@ -21,10 +23,16 @@ public final class StarSettings {
     private static final String KEY_FONT = "article_font";
     private static final String KEY_CUSTOM_FONT_NAME = "article_custom_font_name";
 
+    /** Text size in percent of the app's normal size, used for both articles and the rest of the app. */
     public static final int TEXT_ZOOM_DEFAULT = 100;
-    public static final int TEXT_ZOOM_MIN = 80;
-    public static final int TEXT_ZOOM_MAX = 200;
+    public static final int TEXT_ZOOM_MIN = 50;
+    public static final int TEXT_ZOOM_MAX = 150;
     public static final int TEXT_ZOOM_STEP = 5;
+
+    private static final String GRAPHIK_ASSET = "Graphik-Regular.ttf";
+
+    private static Typeface cachedTypeface;
+    private static String cachedTypefaceKey;
 
     /** Fonts the article body can use. */
     public enum FontChoice {
@@ -93,6 +101,50 @@ public final class StarSettings {
     public static File getCustomFontFile(Context context) {
         File dir = new File(context.getApplicationContext().getFilesDir(), "star_settings");
         return new File(dir, "custom_font");
+    }
+
+    /**
+     * Typeface for the chosen font, for use in native (non-web) screens.
+     *
+     * @return The typeface, or null to keep the app's own fonts.
+     */
+    public static Typeface getTypeface(Context context) {
+        FontChoice font = getFont(context);
+        File customFile = getCustomFontFile(context);
+        String key = font == FontChoice.CUSTOM ? font.name() + customFile.lastModified() : font.name();
+
+        synchronized (StarSettings.class) {
+            if (key.equals(cachedTypefaceKey)) return cachedTypeface;
+
+            Typeface typeface = null;
+            try {
+                switch (font) {
+                    case GRAPHIK:
+                        typeface = Typeface.createFromAsset(context.getAssets(), GRAPHIK_ASSET);
+                        break;
+                    case SERIF:
+                        typeface = Typeface.SERIF;
+                        break;
+                    case SANS_SERIF:
+                        typeface = Typeface.SANS_SERIF;
+                        break;
+                    case MONOSPACE:
+                        typeface = Typeface.MONOSPACE;
+                        break;
+                    case CUSTOM:
+                        typeface = Typeface.createFromFile(customFile);
+                        break;
+                    default:
+                        break;
+                }
+            } catch (Exception e) {
+                Log.e("StarSettings", "Could not load font " + font, e);
+            }
+
+            cachedTypeface = typeface;
+            cachedTypefaceKey = key;
+            return typeface;
+        }
     }
 
     public static void resetAll(Context context) {

@@ -28,7 +28,7 @@ import app.starkist.extension.settings.StarSettingsActivity;
 public final class SettingsEntryHooks {
 
     private static final String TAG = "StarSettings";
-    private static final String DESCRIPTION = "Article font and text size.";
+    private static final String DESCRIPTION = "Font and text size for the whole app.";
     private static final String ROW_TYPE_TO_COPY = "DISPLAY";
 
     /**

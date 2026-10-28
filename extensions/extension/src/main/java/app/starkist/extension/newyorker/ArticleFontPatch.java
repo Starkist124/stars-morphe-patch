@@ -20,7 +20,8 @@ import app.starkist.extension.settings.StarSettings;
 import app.starkist.extension.settings.StarSettings.FontChoice;
 
 /**
- * Applies the Star settings text size and font to article pages.
+ * Applies the Star settings text size and font to article pages, which are web pages
+ * shown in a WebView. {@link AppTextPatch} covers the rest of the app.
  */
 @SuppressWarnings("unused")
 public final class ArticleFontPatch {
@@ -109,8 +110,8 @@ public final class ArticleFontPatch {
             css.append("@font-face { font-family: 'StarCustomFont'; src: url('")
                     .append(CUSTOM_FONT_PATH).append("?v=").append(version).append("'); }\n");
         }
-        css.append("div.article-content, div.article-content p, div.article-content li,"
-                        + " div.article-content blockquote, div.article-content p::first-letter {")
+        // Every element on the page: body, headline, summary, byline, captions and drop caps.
+        css.append("body, body *, body *::first-letter {")
                 .append(" font-family: ").append(font.cssFamily).append(" !important; }");
         return css.toString();
     }
