@@ -101,10 +101,20 @@ public final class SettingsEntryHooks {
     private static String entityName(Object row) {
         try {
             Object entity = entityField(row.getClass()).get(row);
-            return (String) entity.getClass().getMethod("getName").invoke(entity);
+            return (String) fieldValue(entity, "name");
         } catch (Exception e) {
             return null;
         }
+    }
+
+    /**
+     * Reads a SettingsItemEntity field. Fields are used instead of getters because
+     * the app's getters are compiled as component1(), component2(), and so on.
+     */
+    private static Object fieldValue(Object entity, String fieldName) throws Exception {
+        Field field = entity.getClass().getDeclaredField(fieldName);
+        field.setAccessible(true);
+        return field.get(entity);
     }
 
     private static Field entityField(Class<?> rowClass) throws NoSuchFieldException {
@@ -125,10 +135,10 @@ public final class SettingsEntryHooks {
             return method.invoke(entity,
                     name,
                     description,
-                    entityClass.getMethod("getIsEnabled").invoke(entity),
-                    entityClass.getMethod("component4").invoke(entity),
-                    entityClass.getMethod("getHasDivider").invoke(entity),
-                    entityClass.getMethod("getIsEligibleForTrial").invoke(entity));
+                    fieldValue(entity, "isEnabled"),
+                    fieldValue(entity, "pref"),
+                    fieldValue(entity, "hasDivider"),
+                    fieldValue(entity, "isEligibleForTrial"));
         }
         throw new NoSuchMethodException("copy in " + entityClass.getName());
     }
