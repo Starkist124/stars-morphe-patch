@@ -1,17 +1,17 @@
-group = "app.template"
+group = "app.starkist"
 
 patches {
-    // TODO: Update this section with your project details.
     about {
-        name = "UserXYZ Patches"
-        description = "Patches for apps I like"
-        source = "git@github.com:UserXYZ/morphe-patches.git"
-        author = "Awesome dev"
-        contact = "na"
-        website = "na"
+        name = "Star's Patches"
+        description = "Personal Morphe patches"
+        source = "git@github.com:Starkist124/stars-morphe-patch.git"
+        author = "Starkist124"
+        contact = "https://github.com/Starkist124"
+        website = "https://github.com/Starkist124/stars-morphe-patch"
         license = "GPLv3"
     }
 }
+
 
 // Separate configuration so gson is available at runtime for the
 // generatePatchesList task but never bundled into the APK.
