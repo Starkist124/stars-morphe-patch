@@ -28,6 +28,14 @@ object ArticleOnPageStartedFingerprint : Fingerprint(
     parameters = listOf("Landroid/webkit/WebView;", "Ljava/lang/String;", "Landroid/graphics/Bitmap;"),
 )
 
+/** Called for every request the article page makes, including its stylesheet. */
+object ArticleShouldInterceptRequestFingerprint : Fingerprint(
+    classFingerprint = ArticleWebViewClientFingerprint,
+    name = "shouldInterceptRequest",
+    returnType = "Landroid/webkit/WebResourceResponse;",
+    parameters = listOf("Landroid/webkit/WebView;", "Landroid/webkit/WebResourceRequest;"),
+)
+
 /** Called when an article page has finished loading. */
 object ArticleOnPageFinishedFingerprint : Fingerprint(
     classFingerprint = ArticleWebViewClientFingerprint,
