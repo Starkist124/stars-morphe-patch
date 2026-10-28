@@ -1,3 +1,7 @@
+### Morphe
+# Private key that signs the patches file
+morphe-signing.key
+
 ### Java template
 # Compiled class file
 *.class
@@ -118,6 +122,7 @@ gradle-app.setting
 
 # Ignore vscode config
 .vscode/
+bin/
 
 # Dependency directories
 node_modules/
