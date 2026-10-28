@@ -1,10 +1,10 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "1.0.0-dev.1",
+  "version": "1.0.0-dev.2",
   "patches": [
     {
-      "name": "Article font",
-      "description": "Changes the text size and font of article text.",
+      "name": "Font and text size",
+      "description": "Adds font and text size options for the whole app to Star settings, including your own font files.",
       "default": true,
       "category": null,
       "compatiblePackages": [
@@ -19,40 +19,6 @@
           "targets": [
             {
               "version": "10.7.2",
-              "versionCodes": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
-      "name": "Example Patch",
-      "description": "Example patch to start with.",
-      "default": true,
-      "category": null,
-      "compatiblePackages": [
-        {
-          "packageName": "com.example.app",
-          "name": "XYZ app",
-          "description": null,
-          "apkFileType": "APK",
-          "appIconColor": "#FF0045",
-          "signatures": null,
-          "formFactor": "MOBILE",
-          "targets": [
-            {
-              "version": "2.0.0",
-              "versionCodes": null,
-              "isExperimental": false,
-              "minSdk": null,
-              "description": null
-            },
-            {
-              "version": "1.0.2",
               "versionCodes": null,
               "isExperimental": false,
               "minSdk": null,

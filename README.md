@@ -19,7 +19,7 @@ Click the button below, or manually add this repo url to Morphe Manager: https:/
 ## 🩹 Patches list
 
 <!-- PATCHES_START EXPANDED -->
-> **[v1.0.0-dev.1](https://github.com/Starkist124/stars-morphe-patch/releases/tag/v1.0.0-dev.1)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;2 patches total
+> **[v1.0.0-dev.2](https://github.com/Starkist124/stars-morphe-patch/releases/tag/v1.0.0-dev.2)**&nbsp;&nbsp;•&nbsp;&nbsp;`dev`&nbsp;&nbsp;•&nbsp;&nbsp;1 patches total
 <details open>
 <summary>📦 The New Yorker&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
 <br>
@@ -33,24 +33,7 @@ Click the button below, or manually add this repo url to Morphe Manager: https:/
 
 | 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
 |----------|----------------|-----------|
-| [Article font](#article-font) | Changes the text size and font of article text. |  |
-
-</details>
-
-<details open>
-<summary>📦 XYZ app&nbsp;&nbsp;•&nbsp;&nbsp;1 patch</summary>
-<br>
-
-**Package name:** `com.example.app`
-
-**🎯 Supported versions:**
-
-| 2.0.0 | 1.0.2 |
-| :---: | :---: |
-
-| 💊&nbsp;Patch | 📜&nbsp;Description | ⚙️&nbsp;Options |
-|----------|----------------|-----------|
-| [Example Patch](#example-patch) | Example patch to start with. |  |
+| [Font and text size](#font-and-text-size) | Adds font and text size options for the whole app to Star settings, including your own font files. |  |
 
 </details>
 
